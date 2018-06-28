@@ -6,9 +6,9 @@ defmodule ApiMock.CrewTest do
   describe "users" do
     alias ApiMock.Crew.Users
 
-    @valid_attrs %{mock: %{}}
-    @update_attrs %{mock: %{}}
-    @invalid_attrs %{mock: nil}
+    @valid_attrs %{name: "Bender", position: "Ship's Cook", company: "Planet Express", profile: %{}}
+    @update_attrs %{name: "Bender", position: "Ship's Cook", company: "Planet Express", profile: %{}}
+    @invalid_attrs %{name: nil, position: nil, company: nil}
 
     def users_fixture(attrs \\ %{}) do
       {:ok, users} =
@@ -31,7 +31,7 @@ defmodule ApiMock.CrewTest do
 
     test "create_users/1 with valid data creates a users" do
       assert {:ok, %Users{} = users} = Crew.create_users(@valid_attrs)
-      assert users.mock == %{}
+      assert users.profile == %{}
     end
 
     test "create_users/1 with invalid data returns error changeset" do
@@ -42,7 +42,7 @@ defmodule ApiMock.CrewTest do
       users = users_fixture()
       assert {:ok, users} = Crew.update_users(users, @update_attrs)
       assert %Users{} = users
-      assert users.mock == %{}
+      assert users.profile == %{}
     end
 
     test "update_users/2 with invalid data returns error changeset" do

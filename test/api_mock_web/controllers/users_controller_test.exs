@@ -4,9 +4,9 @@ defmodule ApiMockWeb.UsersControllerTest do
   alias ApiMock.Crew
   alias ApiMock.Crew.Users
 
-  @create_attrs %{mock: %{}}
-  @update_attrs %{mock: %{}}
-  @invalid_attrs %{mock: nil}
+  @create_attrs %{name: "Bender", position: "Ship's Cook", company: "Planet Express", profile: %{}}
+  @update_attrs %{name: "Bender", position: "Ship's Cook", company: "Planet Express", profile: %{}}
+  @invalid_attrs %{name: nil, position: nil, company: nil}
 
   def fixture(:users) do
     {:ok, users} = Crew.create_users(@create_attrs)
@@ -20,19 +20,22 @@ defmodule ApiMockWeb.UsersControllerTest do
   describe "index" do
     test "lists all users", %{conn: conn} do
       conn = get conn, users_path(conn, :index)
-      assert json_response(conn, 200)["data"] == []
+      assert json_response(conn, 200)["users"] == []
     end
   end
 
   describe "create users" do
     test "renders users when data is valid", %{conn: conn} do
       conn = post conn, users_path(conn, :create), users: @create_attrs
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      assert %{"id" => id} = json_response(conn, 201)["user"]
 
       conn = get conn, users_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
+      assert json_response(conn, 200)["user"] == %{
         "id" => id,
-        "mock" => %{}}
+        "name" => "Bender",
+        "company" => "Planet Express",
+        "position" => "Ship's Cook",
+        "profile" => %{}}
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -46,12 +49,15 @@ defmodule ApiMockWeb.UsersControllerTest do
 
     test "renders users when data is valid", %{conn: conn, users: %Users{id: id} = users} do
       conn = put conn, users_path(conn, :update, users), users: @update_attrs
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+      assert %{"id" => ^id} = json_response(conn, 200)["user"]
 
       conn = get conn, users_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
+      assert json_response(conn, 200)["user"] == %{
         "id" => id,
-        "mock" => %{}}
+        "name" => "Bender",
+        "company" => "Planet Express",
+        "position" => "Ship's Cook",
+        "profile" => %{}}
     end
 
     test "renders errors when data is invalid", %{conn: conn, users: users} do
