@@ -1,5 +1,7 @@
 # ApiMock
 
+Mock for our take home problem: https://github.com/ClarityServices/api_client_fun
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
