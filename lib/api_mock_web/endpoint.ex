@@ -2,6 +2,9 @@ defmodule ApiMockWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :api_mock
 
   socket "/socket", ApiMockWeb.UserSocket
+  socket "/socket", ApiMockWeb.UserSocket,
++   websocket: true # or list of options
++   longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
