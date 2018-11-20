@@ -2,7 +2,6 @@ defmodule ApiMock.Crew.Users do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "users" do
     field :profile, :map
     field :name, :string

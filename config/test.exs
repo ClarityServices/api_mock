@@ -11,7 +11,6 @@ config :logger, level: :warn
 
 # Configure your database
 config :api_mock, ApiMock.Repo,
-  adapter: Ecto.Adapters.Postgres,
   username: "apimock",
   password: "apimock",
   database: "api_mock_test",
