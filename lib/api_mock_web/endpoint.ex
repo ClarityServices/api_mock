@@ -3,8 +3,8 @@ defmodule ApiMockWeb.Endpoint do
 
   socket "/socket", ApiMockWeb.UserSocket
   socket "/socket", ApiMockWeb.UserSocket,
-+   websocket: true # or list of options
-+   longpoll: false
+    websocket: true,
+    longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -25,7 +25,7 @@ defmodule ApiMockWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Phoenix.json_library()
 
   plug Plug.MethodOverride
   plug Plug.Head
