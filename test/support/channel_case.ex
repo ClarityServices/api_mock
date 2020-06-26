@@ -13,6 +13,7 @@ defmodule ApiMockWeb.ChannelCase do
   of the test unless the test case is marked as async.
   """
 
+  alias Ecto.Adapters.SQL.Sandbox
   use ExUnit.CaseTemplate
 
   using do
@@ -27,9 +28,9 @@ defmodule ApiMockWeb.ChannelCase do
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ApiMock.Repo)
+    :ok = Sandbox.checkout(ApiMock.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ApiMock.Repo, {:shared, self()})
+      Sandbox.mode(ApiMock.Repo, {:shared, self()})
     end
     :ok
   end
