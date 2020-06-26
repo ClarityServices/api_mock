@@ -41,7 +41,8 @@ defmodule ApiMock.Mixfile do
       {:jason, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.0"},
-      {:plug, "~> 1.7"}
+      {:plug, "~> 1.7"},
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
