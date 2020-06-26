@@ -16,3 +16,10 @@ config :api_mock, ApiMock.Repo,
   database: "api_mock_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Configure the database for GitHub Actions
+if System.get_env("GITHUB_ACTIONS") do
+  config :api_mock, ApiMock.Repo,
+    username: "postgres",
+    password: "postgres"
+end
