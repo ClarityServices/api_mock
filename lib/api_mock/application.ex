@@ -1,4 +1,7 @@
 defmodule ApiMock.Application do
+  @moduledoc """
+  This is the application.
+  """
   use Application
 
   # See https://hexdocs.pm/elixir/Application.html

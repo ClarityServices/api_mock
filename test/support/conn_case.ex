@@ -27,7 +27,6 @@ defmodule ApiMockWeb.ConnCase do
     end
   end
 
-
   setup tags do
     :ok = Sandbox.checkout(ApiMock.Repo)
     unless tags[:async] do
