@@ -1,4 +1,7 @@
 defmodule ApiMock.Crew.Users do
+  @moduledoc """
+  This module defines the Users model that are part of the Crew.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
