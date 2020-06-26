@@ -29,5 +29,5 @@ jobs:
           otp-version: '22.2'
           elixir-version: '1.9.4'
       - run: mix deps.get
-      - run: mix ecto.setup
+      - run: MIX_ENV=test mix ecto.setup
       - run: mix test
