@@ -38,6 +38,7 @@ defmodule ApiMockWeb.Endpoint do
     key: "_api_mock_key",
     signing_salt: "DbN9eRsg"
 
+  plug Corsica, origins: ["http://localhost", "https://blooming-savannah-20593.herokuapp.com"]
   plug ApiMockWeb.Router
 
   @doc """
