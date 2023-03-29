@@ -7,6 +7,6 @@ defmodule ApiMockWeb.Router do
 
   scope "/api", ApiMockWeb do
     pipe_through :api
-    resources "/users", UsersController, except: [:new, :edit]
+    resources "/users", UsersController, only: [:index, :show]
   end
 end

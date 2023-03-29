@@ -3,7 +3,8 @@ defmodule ApiMock.Crew.Users do
   This module defines the Users model that are part of the Crew.
   """
   use Ecto.Schema
-  import Ecto.Changeset
+
+  @primary_key {:id, :binary_id, autogenerate: false}
 
   schema "users" do
     field :profile, :map
@@ -12,12 +13,5 @@ defmodule ApiMock.Crew.Users do
     field :company, :string
 
     timestamps()
-  end
-
-  @doc false
-  def changeset(users, attrs) do
-    users
-    |> cast(attrs, [:profile, :name, :position, :company])
-    |> validate_required([:name, :position, :company])
   end
 end

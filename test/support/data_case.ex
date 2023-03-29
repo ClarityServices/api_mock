@@ -5,36 +5,16 @@ defmodule ApiMock.DataCase do
 
   You may define functions here to be used as helpers in
   your tests.
-
-  Finally, if the test case interacts with the database,
-  it cannot be async. For this reason, every test runs
-  inside a transaction which is reset at the beginning
-  of the test unless the test case is marked as async.
   """
-
-  alias Ecto.Adapters.SQL.Sandbox
 
   use ExUnit.CaseTemplate
 
   using do
     quote do
-      alias ApiMock.Repo
-
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query
       import ApiMock.DataCase
     end
-  end
-
-  setup tags do
-    :ok = Sandbox.checkout(ApiMock.Repo)
-
-    unless tags[:async] do
-      Sandbox.mode(ApiMock.Repo, {:shared, self()})
-    end
-
-    :ok
   end
 
   @doc """

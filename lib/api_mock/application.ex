@@ -11,8 +11,6 @@ defmodule ApiMock.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the Ecto repository
-      supervisor(ApiMock.Repo, []),
       # Start the endpoint when the application starts
       supervisor(ApiMockWeb.Endpoint, []),
       # Start your own worker by calling: ApiMock.Worker.start_link(arg1, arg2, arg3)

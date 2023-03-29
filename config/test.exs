@@ -8,18 +8,3 @@ config :api_mock, ApiMockWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-# Configure your database
-config :api_mock, ApiMock.Repo,
-  username: "apimock",
-  password: "apimock",
-  database: "api_mock_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
-
-# Configure the database for GitHub Actions
-if System.get_env("GITHUB_ACTIONS") do
-  config :api_mock, ApiMock.Repo,
-    username: "postgres",
-    password: "postgres"
-end
