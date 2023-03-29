@@ -12,7 +12,9 @@ defmodule ApiMockWeb.UsersController do
   end
 
   def show(conn, %{"id" => id}) do
-    users = Crew.get_users!(id)
-    render(conn, "show.json", users: users)
+    with {:ok, user} <- Crew.get_users!(id) do
+      conn
+        |> render("show.json", users: user)
+    end
   end
 end

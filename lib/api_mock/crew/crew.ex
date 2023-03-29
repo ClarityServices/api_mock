@@ -34,7 +34,9 @@ defmodule ApiMock.Crew do
   """
   def get_users!(id) do
     list_users
-      |> Enum.find(nil, fn u -> u[:id] == id end )
+      |> Enum.find_value({:error, :not_found}, fn u ->
+        if u[:id] == id, do: {:ok, u}
+      end)
   end
 
   @doc """
