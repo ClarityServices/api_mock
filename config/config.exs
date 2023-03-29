@@ -6,16 +6,11 @@
 use Mix.Config
 
 # General application configuration
-config :api_mock,
-  ecto_repos: [ApiMock.Repo]
-
 # Configures the endpoint
 config :api_mock, ApiMockWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "BqOwcYcO6yzbc8qp6e4SxlldOLILuvJ8JS+EfaJAMC8xqrgHXtdgxP2BmbVIGZ0Q",
-  render_errors: [view: ApiMockWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: ApiMock.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: ApiMockWeb.ErrorView, accepts: ~w(json)]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

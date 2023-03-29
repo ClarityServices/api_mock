@@ -37,7 +37,6 @@ defmodule ApiMock.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:ecto_sql, "~> 3.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.0"},
@@ -55,9 +54,6 @@ defmodule ApiMock.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end

@@ -3,9 +3,6 @@ defmodule ApiMock.Crew do
   The Crew context.
   """
 
-  import Ecto.Query, warn: false
-  alias ApiMock.Repo
-
   alias ApiMock.Crew.Users
 
   @doc """
@@ -18,7 +15,7 @@ defmodule ApiMock.Crew do
 
   """
   def list_users do
-    Repo.all(Users)
+    list_users_json
   end
 
   @doc """
@@ -35,7 +32,10 @@ defmodule ApiMock.Crew do
       ** (Ecto.NoResultsError)
 
   """
-  def get_users!(id), do: Repo.get!(Users, id)
+  def get_users!(id) do
+    list_users
+      |> Enum.find(nil, fn u -> u[:id] == id end )
+  end
 
   @doc """
   Creates a users.
@@ -52,53 +52,87 @@ defmodule ApiMock.Crew do
   def create_users(attrs \\ %{}) do
     %Users{}
     |> Users.changeset(attrs)
-    |> Repo.insert()
   end
 
-  @doc """
-  Updates a users.
-
-  ## Examples
-
-      iex> update_users(users, %{field: new_value})
-      {:ok, %Users{}}
-
-      iex> update_users(users, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_users(%Users{} = users, attrs) do
-    users
-    |> Users.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a Users.
-
-  ## Examples
-
-      iex> delete_users(users)
-      {:ok, %Users{}}
-
-      iex> delete_users(users)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_users(%Users{} = users) do
-    Repo.delete(users)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking users changes.
-
-  ## Examples
-
-      iex> change_users(users)
-      %Ecto.Changeset{source: %Users{}}
-
-  """
-  def change_users(%Users{} = users) do
-    Users.changeset(users, %{})
+  def list_users_json() do
+    [
+      %{name: "Philip J Fry",
+        position: "Delivery Boy",
+        id: "3aa03fb8-57c2-4926-8ab5-51459b477fd1",
+        profile: %{
+          gender: "M",
+          species: "Human",
+          age: 25,
+          planet: "Earth",
+          status: "Alive"
+        },
+        company: "Planet Express"},
+      %{name: "Turanga Leela",
+        position: "Captain",
+        id: "5b829f59-ee8d-481e-9980-5aa8f9e46953",
+        profile: %{
+          gender: "F",
+          species: "Mutant, Human",
+          age: 25,
+          planet: "Earth",
+          status: "Alive"
+        },
+        company: "Planet Express"},
+      %{name: "Bender Bending Rodríguez",
+        position: "Ship's Robot, Ship's Cook, Assistant Manager of Sales, Gunnery Chief",
+        id: "04921ff5-ccfe-40b1-9c92-1a369ea116a6",
+        profile: %{
+          gender: "M",
+          species: "Robot",
+          age: 4,
+          planet: "Earth",
+          status: "Alive"
+        },
+        company: "Planet Express"},
+      %{name: "Planet Express Ship",
+        position: "Ship",
+        id: "33190659-6e73-4162-80ff-563cb2b256e1",
+        profile: %{
+          gender: "N/A",
+          species: "Robotic Spacecraft",
+          age: "N/A",
+          planet: "Earth",
+          status: "N/A"
+        },
+        company: "Planet Express"},
+      %{name: "Dr. John A. Zoidberg Ph.D",
+        position: "Staff Doctor",
+        id: "88b5b4a0-c795-48a7-a6a2-5b344c760a94",
+        profile: %{
+          gender: "M",
+          species: "Decapodian",
+          age: 86,
+          planet: "Decapod 10",
+          status: "Alive",
+        },
+        company: "Planet Express"},
+      %{name: "Zapp Brannigan",
+        position: "Captain",
+        id: "bc1e90a7-0aa5-47a9-8a64-98d4f0f2ade8",
+        profile: %{
+          gender: "M",
+          species: "Human",
+          age: 28,
+          planet: "Earth",
+          status: "Alive"
+        },
+        company: "Democratic Order of Planets"},
+      %{name: "Kif Kroker",
+        position: "Lieutenant",
+        id: "d310ae2a-d301-497a-9956-e1394521ac26",
+        profile: %{
+          gender: "M",
+          species: "Amphibiosans",
+          age: 24,
+          planet: "Amphibios 9",
+          status: "Alive"
+        },
+        company: "Democratic Order of Planets"}
+    ]
   end
 end
